@@ -72,16 +72,23 @@ Write a function called collectStrings which accepts an object and returns
 an array of all the values in the object that have a typeof string
 collectStrings(obj) // ["foo", "bar", "baz"])
 recursion with helper
-    const obj = { name: "Bob", age: "80 years old", height: "3 feet", location: "Maine" }
+
+    const obj = { name: "Bob", age: "80 years old", height: "3 feet", location: "Maine", status: 4 }
 
     function collectStrings(obj) {
-
-        let str = Object.entries(obj).map(([key, value]) => (
-            typeof value === 'string' ? value : collectStrings(value)
-        ))
-        return str
+    str = [];
+    for (const data in obj) {
+        if (typeof obj[data] === 'string') {
+            str.push(obj[data]);
+        }
+        else if (typeof obj[data] === 'object') {
+            str = str.concat(collectStrings(obj[data]));
+        }
     }
-    console.log(collectStrings(obj));
+    return str;
+    }
+
+    console.log(collectStrings(obj))
 
 Problem #5: Bubble Sort
 Given the following data structure
@@ -177,7 +184,7 @@ Solution
     }
 
     console.log(ageSort(data))
-    
+
 favorite movie by rating (solution should look like)
 
     const sortedByRating = [ 

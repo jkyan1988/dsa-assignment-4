@@ -64,54 +64,60 @@
 // // an array of all the values in the object that have a typeof string
 // collectStrings(obj) // ["foo", "bar", "baz"])
 // //recursion with helper
-// const obj = { name: "Bob", age: "80 years old", height: "3 feet", location: "Maine", status: 4 }
+const obj = { name: "Bob", age: "80 years old", height: "3 feet", location: "Maine", status: 4 }
 
-// function collectStrings(obj) {
+function collectStrings(obj) {
+    str = [];
+    for (const data in obj) {
+        if (typeof obj[data] === 'string') {
+            str.push(obj[data]);
+        }
+        else if (typeof obj[data] === 'object') {
+            str = str.concat(collectStrings(obj[data]));
+        }
+    }
+    return str;
+}
 
-//     let str = Object.entries(obj).map(([key, value]) => (
-//         typeof value === 'string' ? value : collectStrings(value)
-//     ))
-//     return str
-// }
-// console.log(collectStrings(obj));
+console.log(collectStrings(obj))
 
 // Problem #5: Bubble Sort
 // // Given the following data structure
-const data = [
-    {
-        name: 'John Smith',
-        age: new Map([['age', 88]]),
-        favoriteMovie: [
-            {
-                title: 'Hulk',
-                genre: 'action',
-                rating: 6
-            }
-        ]
-    },
-    {
-        name: 'Tony Kim',
-        age: new Map([['age', 3]]),
-        favoriteMovie: [
-            {
-                title: 'Top Gun',
-                genre: 'action',
-                rating: 10
-            }
-        ]
-    },
-    {
-        name: 'John Smith',
-        age: new Map([['age', 35]]),
-        favoriteMovie: [
-            {
-                title: 'Saw',
-                genre: 'horror',
-                rating: 8
-            }
-        ]
-    }
-]
+// const data = [
+//     {
+//         name: 'John Smith',
+//         age: new Map([['age', 88]]),
+//         favoriteMovie: [
+//             {
+//                 title: 'Hulk',
+//                 genre: 'action',
+//                 rating: 6
+//             }
+//         ]
+//     },
+//     {
+//         name: 'Tony Kim',
+//         age: new Map([['age', 3]]),
+//         favoriteMovie: [
+//             {
+//                 title: 'Top Gun',
+//                 genre: 'action',
+//                 rating: 10
+//             }
+//         ]
+//     },
+//     {
+//         name: 'John Smith',
+//         age: new Map([['age', 35]]),
+//         favoriteMovie: [
+//             {
+//                 title: 'Saw',
+//                 genre: 'horror',
+//                 rating: 8
+//             }
+//         ]
+//     }
+// ]
 
 
 // function ageSort(data) {
@@ -187,20 +193,20 @@ const data = [
 
 
 
-function rateSort(data) {
-    let copyData = [...data]
-    for (let i = 1; i < copyData.length; i++) {
-        if (copyData[i].favoriteMovie[0].rating < copyData[i - 1].favoriteMovie[0].rating) {
-            let temp = copyData[i];
-            copyData[i] = copyData[i - 1];
-            copyData[i - 1] = temp;
-        }
-    }
+// function rateSort(data) {
+//     let copyData = [...data]
+//     for (let i = 1; i < copyData.length; i++) {
+//         if (copyData[i].favoriteMovie[0].rating < copyData[i - 1].favoriteMovie[0].rating) {
+//             let temp = copyData[i];
+//             copyData[i] = copyData[i - 1];
+//             copyData[i - 1] = temp;
+//         }
+//     }
 
-    return copyData
-}
+//     return copyData
+// }
 
-console.log(rateSort(data))
+// console.log(rateSort(data))
 // favorite movie by rating (solution should look like)
 // const sortedByRating = [ 
 //     {
