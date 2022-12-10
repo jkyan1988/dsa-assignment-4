@@ -161,6 +161,8 @@ please see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Glo
     }
     ]
 
+Solution
+
     function ageSort(data) {
         let copyData = [...data]
         for (let i = 1; i < copyData.length; i++) {
@@ -175,6 +177,7 @@ please see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Glo
     }
 
     console.log(ageSort(data))
+    
 favorite movie by rating (solution should look like)
 
     const sortedByRating = [ 
@@ -212,3 +215,20 @@ favorite movie by rating (solution should look like)
     ] 
     }
     ]
+
+Solution
+
+        function rateSort(data) {
+        let copyData = [...data]
+        for (let i = 1; i < copyData.length; i++) {
+            if (copyData[i].favoriteMovie[0].rating < copyData[i - 1].favoriteMovie[0].rating) {
+                let temp = copyData[i];
+                copyData[i] = copyData[i - 1];
+                copyData[i - 1] = temp;
+            }
+        }
+
+        return copyData
+    }
+
+    console.log(rateSort(data))
